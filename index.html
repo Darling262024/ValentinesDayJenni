@@ -36,7 +36,7 @@
             </header>
 
             <section class="headline">
-                <h1>¡EL MUNDO SE DETIENE SI NO ESTAR CONMIGO</h1>
+                <h1>¡EL MUNDO SE DETIENE SI NO ESTOY CONMIGO</h1>
                 <p class="subheadline">Expertos no logran explicar cómo alguien puede ser tan perfecta y hermosa al
                     mismo tiempo ❤️ </p>
             </section>
@@ -310,16 +310,49 @@
 
         function mostrarAlerta() {
             Swal.fire({
-                title: '¡URGENTE!',
+                title: '❤️ ¡URGENTE! ❤️',
                 text: "¿Aceptas seguir escribiendo esta historia conmigo?",
-                icon: 'heart',
+                icon: 'question',
                 iconColor: '#8b0000',
                 showCancelButton: true,
-                confirmButtonText: '¡Sí, mil veces sí!',
-                cancelButtonText: '¡Obvio!',
-                background: 'url(https://www.transparenttextures.com/patterns/parchment.png)',
+                confirmButtonText: 'Siii mil veces ❤️',
+                cancelButtonText: 'Obvio 😌',
+                confirmButtonColor: '#8b0000',
+                cancelButtonColor: '#555',
+                background: '#fff8f0',
                 backdrop: `rgba(139, 0, 0, 0.3)`
-            });
+            }).then((result) => {
+
+                if (result.isConfirmed) {
+
+                    confetti({
+                        particleCount: 180,
+                        spread: 90,
+                        origin: { y: 0.6 }
+                    });
+
+                    Swal.fire({
+                        title: 'Sabía que dirías que sí 😏❤️',
+                        text: 'Entonces prepárate… esto apenas comienza.',
+                        icon: 'success'
+                    });
+
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+
+                    Swal.fire({
+                        title: 'Obvio pues 😌',
+                        text: 'Me encanta que estés tan segura.',
+                        icon: 'success',
+                        confirmButtonText: 'Continuar 💌'
+                    }).then(() => {
+                        confetti({
+                            particleCount: 120,
+                            spread: 70
+                        });
+                    });
+                }
+
+            });;
         }
 
         function respuestaAmor(tipo) {
